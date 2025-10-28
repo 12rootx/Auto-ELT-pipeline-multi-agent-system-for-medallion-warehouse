@@ -74,7 +74,7 @@ elt_pipeline/
 ---
 
 ## 📁 Agentis System Workflow
-<img width="717" height="491" alt="image" src="https://github.com/user-attachments/assets/7c1743a7-6e21-4d5b-a00d-cf4426b9c703" />
+<img width="898" height="626" alt="image" src="https://github.com/user-attachments/assets/5108413b-3299-4ac2-9c65-918c77330121" />
 
 ---
 
