@@ -1,4 +1,4 @@
-# 🧠 Auto ELT Agent
+# 🧠 Auto ELT Pipeline Agentic System
 
 > **Automated ELT pipeline generator** that creates complete data warehouses from **natural language descriptions** using **LangGraph for multi-agent system**, **dlt for ingestion**, and **dbt for transformation**.
 
@@ -31,8 +31,8 @@ Bronze (Raw) → Silver (Cleaned) → Gold (Business-Ready) → Views (Data Mart
 |--------|-------------|
 | **Bronze** | Raw data ingestion via `dlt` |
 | **Silver** | Cleaned and standardized models (deduplication, normalization) |
-| **Gold** | Fact and dimension tables (star schema) |
 | **Snapshots** | SCD Type 2 tracking for historical data |
+| **Gold** | Fact and dimension tables (star schema) |
 | **Views** | Aggregated, business-friendly data marts |
 
 ---
@@ -165,6 +165,7 @@ Tables:
 
 ```
 dbt_project/
+├── macros/
 ├── models/
 │   ├── sources.yml
 │   ├── silver/
@@ -172,11 +173,13 @@ dbt_project/
 │   │   └── slv_orders.sql
 │   ├── gold/
 │   │   ├── fact_orders.sql
-│   │   └── dim_customers.sql
+│   │   └── dm_customers.sql
 │   └── views/
 │       └── vw_customer_orders.sql
 ├── snapshots/
 │   └── snp_customers.sql
+│── packages.yml
+│── profiles.yml
 └── dbt_project.yml
 ```
 
@@ -191,9 +194,9 @@ Edit `agents/prompts.py` to customize:
 - Output formats
 - Design heuristics
 
-### Configure LLMs
+### Configure LLMs and output_dir
 
-Update LLM settings in `configs.py`:
+Update LLM settings and output_dir in `configs.py`:
 
 ```python
 # Example configurations
