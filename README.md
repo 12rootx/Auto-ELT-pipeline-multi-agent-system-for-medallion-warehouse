@@ -205,7 +205,7 @@ Update LLM settings and output_dir in `configs.py`:
 
 ```python
 # Example configurations
-llm = ChatOpenAI(model="gpt-4o", temperature=0)
+llm = ChatOpenAI(model="gpt-4o", temperature=0)  # Basic version
 llm_en = ChatOpenAI(model="gpt-4.1", temperature=0)  # Enhanced version
 ```
 
