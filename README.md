@@ -101,6 +101,7 @@ pip install -r requirements.txt
 Create a `.env` file in the root directory:
 
 ```bash
+# LLM API
 OPENAI_API_KEY=sk-your-openai-key-here
 
 # Destination: Snowflake credentials
@@ -110,6 +111,10 @@ SNOWFLAKE_PASSWORD=your-password
 SNOWFLAKE_DATABASE=your-database
 SNOWFLAKE_WAREHOUSE=your-warehouse
 SNOWFLAKE_ROLE=your-role
+
+# Data Source Azure blob credentials
+AZURE_STORAGE_CONNECTION_STRING = "your_connection_string"
+AZURE_CONTAINER = "your_container_name"
 ```
 
 #### 3.2. Configure DLT Secrets
