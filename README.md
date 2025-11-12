@@ -71,7 +71,6 @@ system_dir/
 ├── design_plans/                  # Auto-generated dbt models after human confirmation on view_builder, for future adjustment/debugging
 └── dbt_project/                   # Auto-generated dbt project from dbt_transformer
 ```
-```
 
 ---
 
