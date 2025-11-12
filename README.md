@@ -121,7 +121,7 @@ In `.dlt/secrets.toml`, include:
 database = "your_database"
 username = "your_username"
 password = "your_password"
-host = "your_account.snowflakecomputing.com"
+host = "your_host"
 warehouse = "your_warehouse"
 role = "your_role"
 
