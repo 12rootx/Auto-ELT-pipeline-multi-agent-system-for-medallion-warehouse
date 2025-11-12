@@ -56,17 +56,17 @@ system_dir/
 │   ├── view_builder.py            # Create data marts and views
 │   ├── reviewers.py               # Validation and quality review
 │   └── nodes/                     # Specialized workflow nodes
-│       ├── human_node.py
-│       ├── ELT_config_node.py
-│       ├── design_reuse_checker.py
-│       ├── dlt_ingestor.py
-│       └── dbt_transformer.py
-├── utils/                         # Helper utilities
-│   ├── helper_functions.py
-│   ├── dbt_configs.py
-│   ├── ELTConfigurator.py
-│   ├── agent_tools.py
-│   └── save_sql.py
+│       ├── human_node.py          # Human confirmation through the system
+│       ├── ELT_config_node.py     # ELT configuration questionary
+│       ├── design_reuse_checker.py  # Design reuse checker and ask for human confirmation
+│       ├── dlt_ingestor.py          # dlt ingestion based on pipeline plan
+│       └── dbt_transformer.py       # dbt transformation based on dbt project
+├── utils/                         
+│   ├── helper_functions.py        # Helper python functions
+│   ├── dbt_configs.py             # dbt project configurator
+│   ├── ELTConfigurator.py         # ELT configuration questionary
+│   ├── agent_tools.py             # Agent tools for agent to call up
+│   └── save_sql.py                # Utils for saving dbt models
 ├── configs.py                     # Model and output directory configurations
 ├── design_plans/                  # Auto-generated dbt models after human confirmation on view_builder, for future adjustment/debugging
 └── dbt_project/                   # Auto-generated dbt project from dbt_transformer
