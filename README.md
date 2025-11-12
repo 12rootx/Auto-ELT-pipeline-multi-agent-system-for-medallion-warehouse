@@ -132,8 +132,8 @@ connection_string = "your_connection_string"
 ```
 
 #### Reference:
-dlt hub docs: https://dlthub.com/docs/intro
-dbt docs: https://docs.getdbt.com/docs/introduction
+1. dlt hub docs: https://dlthub.com/docs/intro
+2. dbt docs: https://docs.getdbt.com/docs/introduction
 
 ### 5. Run the System
 
@@ -155,11 +155,11 @@ python main.py
 Please ingest the following datasets into Snowflake and build the ELT pipeline: 
 
 Tables: 
-  census_lga_2016_g01: /Users/rootx/DataScience_Std/LANGGRAPH/de_agent/datasets/Census LGA/2016Census_G01_NSW_LGA.csv
-  census_lga_2016_g02: /Users/rootx/DataScience_Std/LANGGRAPH/de_agent/datasets/Census LGA/2016Census_G02_NSW_LGA.csv
-  nsw_lga_code: /Users/rootx/DataScience_Std/LANGGRAPH/de_agent/datasets/NSW_LGA/NSW_LGA_CODE.csv
-  nsw_lga_suburb: /Users/rootx/DataScience_Std/LANGGRAPH/de_agent/datasets/NSW_LGA/NSW_LGA_SUBURB.csv
-  listings: /Users/rootx/DataScience_Std/LANGGRAPH/de_agent/datasets/listings/*.csv
+  census_lga_2016_g01: ./datasets/Census LGA/2016Census_G01_NSW_LGA.csv
+  census_lga_2016_g02: ./datasets/Census LGA/2016Census_G02_NSW_LGA.csv
+  nsw_lga_code: ./datasets/NSW_LGA/NSW_LGA_CODE.csv
+  nsw_lga_suburb: ./datasets/NSW_LGA/NSW_LGA_SUBURB.csv
+  listings: ./datasets/listings/*.csv
 ```
 
 ### What Happens Next
@@ -198,6 +198,9 @@ dbt_project/
 
 ```bash
 cd ./dbt_project
+```
+
+```bash
 dbt docs serve
 ```
 ---
