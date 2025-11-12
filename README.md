@@ -39,15 +39,16 @@ Bronze (Raw) → Silver (Cleaned) → Gold (Business-Ready) → Views (Data Mart
 
 ## 📁 Project Structure
 
+
 ```
-elt_pipeline/
-├── main.py                        # Entry point
-├── graph/                         # LangGraph workflow definition
-│   ├── graph.py                   # Main workflow graph
+system_dir/
+├── main.py                        # Execution point
+├── graph/                  
+│   ├── graph.py                   # Main LangGraph workflow graph
 │   ├── state.py                   # AgentState model
 │   └── routers.py                 # Conditional routing logic
-├── agents/                        # Agent implementations
-│   ├── interpreter.py             # Parse user instructions
+├── agents/                        
+│   ├── interpreter.py             # Parse user prompt
 │   ├── source_inspector.py        # Analyze data sources
 │   ├── architecture_designer.py   # Design warehouse blueprint
 │   ├── silver_builder.py          # Generate Silver layer models
@@ -66,9 +67,10 @@ elt_pipeline/
 │   ├── ELTConfigurator.py
 │   ├── agent_tools.py
 │   └── save_sql.py
-├── configs.py                     # Model and directory configurations
-├── design_plans/                  # Auto-generated architecture designs
-└── dbt_project/                   # Auto-generated dbt project
+├── configs.py                     # Model and output directory configurations
+├── design_plans/                  # Auto-generated dbt models after human confirmation on view_builder, for future adjustment/debugging
+└── dbt_project/                   # Auto-generated dbt project from dbt_transformer
+```
 ```
 
 ---
@@ -92,19 +94,17 @@ conda activate elt_agent
 ```bash
 # Install from requirements
 pip install -r requirements.txt
-
-# Or install manually
-pip install langgraph langchain-openai dlt pyyaml python-dotenv dbt-core snowflake-connector-python
 ```
 
-### 3. Configure Environment Variables
+### 3. Configurations
+#### 3.1 Environment Variables
 
 Create a `.env` file in the root directory:
 
 ```bash
 OPENAI_API_KEY=sk-your-openai-key-here
 
-# Optional: Snowflake credentials
+# Destination: Snowflake credentials
 SNOWFLAKE_ACCOUNT=your-account
 SNOWFLAKE_USER=your-username
 SNOWFLAKE_PASSWORD=your-password
@@ -113,7 +113,7 @@ SNOWFLAKE_WAREHOUSE=your-warehouse
 SNOWFLAKE_ROLE=your-role
 ```
 
-### 4. Configure DLT Secrets
+#### 3.2. Configure DLT Secrets
 
 In `.dlt/secrets.toml`, include:
 
@@ -132,7 +132,15 @@ container = "your_container_name"
 connection_string = "your_connection_string"
 ```
 
+#### Reference:
+dlt hub docs: https://dlthub.com/docs/intro
+dbt docs: https://docs.getdbt.com/docs/introduction
+
 ### 5. Run the System
+
+```bash
+cd your_system_dir
+```
 
 ```bash
 python main.py
@@ -159,10 +167,10 @@ Tables:
 
 1. 🔍 Inspects all datasets and infers schema  
 2. 🏗️ Designs the **Medallion architecture** automatically  
-3. 🧱 Generates dbt models for Bronze, Silver, Gold, and Views  
+3. 🧱 Generates dbt models for Bronze, Silver, Gold, and Views, along with reusable, adujstable design plan object.
 4. 👥 Requests human approval for schema and transformation logic  
 5. ⚡ Sets up incremental/full-refresh strategies  
-6. 🚀 Generates a fully deployable dbt project
+6. 🚀 Generates a fully dbt project 
 
 ---
 
@@ -187,7 +195,11 @@ dbt_project/
 │── profiles.yml
 └── dbt_project.yml
 ```
-
+#### Check dbt lineage graph
+```bash
+cd ./dbt_project
+dbt docs serve
+```
 ---
 
 ## 🔧 Customization
