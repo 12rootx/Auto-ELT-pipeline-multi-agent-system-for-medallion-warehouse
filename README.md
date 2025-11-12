@@ -11,7 +11,7 @@ It automatically:
 
 - 🔍 **Analyzes** your data sources (local files or Azure Blob Storage)
 - 🏗️ **Designs** a complete **Medallion architecture** (Bronze → Silver → Gold → Views)
-- 🧱 **Generates** `dbt` models for all layers (silver, gold, views, snapshots)
+- 🧱 **Generates** `dbt` models for all layers (silver, gold, views, snapshots), and reusable, adujstable design plan object.
 - ⚙️ **Sets up** ingestion pipelines with `dlt`
 - ❄️ **Deploys** to **Snowflake**, with proper incremental/full-refresh strategies
 - 🧑‍💻 **Includes human-in-the-loop approvals** for key design decisions
@@ -76,7 +76,7 @@ system_dir/
 ---
 
 ## 📁 Agentis System Workflow
-<img width="898" height="626" alt="image" src="https://github.com/user-attachments/assets/5108413b-3299-4ac2-9c65-918c77330121" />
+<img width="853" height="590" alt="image" src="https://github.com/user-attachments/assets/4f2583dd-e70e-4dfb-819e-349bae0ceac3" />
 
 ---
 
@@ -196,6 +196,7 @@ dbt_project/
 └── dbt_project.yml
 ```
 #### Check dbt lineage graph
+
 ```bash
 cd ./dbt_project
 dbt docs serve
@@ -216,9 +217,16 @@ Edit `agents/prompts.py` to customize:
 Update LLM settings and output_dir in `configs.py`:
 
 ```python
-# Example configurations
-llm = ChatOpenAI(model="gpt-4o", temperature=0)  # Basic version
-llm_en = ChatOpenAI(model="gpt-4.1", temperature=0)  # Enhanced version
+# Current configurations for optimal output
+
+# Basic level for agents: intepreter, source_inspector, dataset_explorer, pipeline_orchestrator
+llm = ChatOpenAI(model="gpt-4o", temperature=0)
+
+# Med level for agents: all model builders
+llm_md = ChatOpenAI(model="gpt-4.1", temperature=0)
+
+# Enhanced level for agents: architecture_designer, reviewer
+llm_en = ChatOpenAI(model="gpt-5", reasoning_effort="low", temperature=0)
 ```
 
 ---
